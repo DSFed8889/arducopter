@@ -92,9 +92,9 @@ void AVRI2CDriver::end() {
  
 void AVRI2CDriver::setHighSpeed(bool active) {
     if (active) {
-        TWBR = ((CPU_FREQ / 400000) - 16) / 2;
+        TWBR = (((CPU_FREQ / 400000L) - 16) / 2);
     } else {
-        TWBR = ((CPU_FREQ / 100000) - 16) / 2;
+        TWBR = (((CPU_FREQ / 100000) - 16) / 2);
     }
 }
 

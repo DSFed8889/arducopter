@@ -10,9 +10,9 @@ configure:
 	@echo  >> $(SKETCHBOOK)/config.mk
 	@echo \# The communication port used to communicate with the APM. >> $(SKETCHBOOK)/config.mk
 ifneq ($(findstring CYGWIN, $(SYSTYPE)),)
-	@echo PORT = COM3 >> $(SKETCHBOOK)/config.mk
+	@echo PORT = COM6 >> $(SKETCHBOOK)/config.mk
 else
-	@echo PORT = /dev/ttyACM0 >> $(SKETCHBOOK)/config.mk
+	@echo PORT = /dev/ttyS6 >> $(SKETCHBOOK)/config.mk
 endif
 	@echo  >> $(SKETCHBOOK)/config.mk
 	@echo  \# uncomment and fill in the path to Arduino if installed in an exotic location >> $(SKETCHBOOK)/config.mk

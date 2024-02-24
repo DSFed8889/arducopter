@@ -39,7 +39,9 @@ static void stabilize_run()
     get_pilot_desired_lean_angles(g.rc_1.control_in, g.rc_2.control_in, target_roll, target_pitch);
 
     // get pilot's desired yaw rate
+    //** This is edited
     target_yaw_rate = get_pilot_desired_yaw_rate(g.rc_4.control_in);
+    //** End of edit
 
     // get pilot's desired throttle
     pilot_throttle_scaled = get_pilot_desired_throttle(g.rc_3.control_in);

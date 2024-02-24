@@ -73,14 +73,14 @@ $(error ERROR: hardware directory for $(HARDWARE) not found)
 endif
 
 # Find the boards.txt that we are using
-BOARDFILE		:=	$(wildcard $(HARDWARE_DIR)/boards.txt)
+BOARDFILE		:=	$(wildcard $(HARDWARE_DIR)/avr/boards.txt)
 ifeq ($(BOARDFILE),)
 $(error ERROR: could not locate boards.txt for hardware $(HARDWARE))
 endif
 
 # Extract needed build parameters from the boardfile
 MCU			:=	$(shell grep $(BOARD).build.mcu $(BOARDFILE) | cut -d = -f 2)
-F_CPU		:=	$(shell grep $(BOARD).build.f_cpu $(BOARDFILE) | cut -d = -f 2)
+F_CPU		:=	16000000L
 HARDWARE_CORE :=	$(shell grep $(BOARD).build.core $(BOARDFILE) | cut -d = -f 2)
 UPLOAD_SPEED :=	$(shell grep $(BOARD).upload.speed $(BOARDFILE) | cut -d = -f 2)
 
@@ -152,7 +152,7 @@ print-%:
 
 .PHONY: upload
 upload: $(SKETCHHEX)
-	$(AVRDUDE) -c $(UPLOAD_PROTOCOL) -p $(MCU) -P $(PORT) -b$(UPLOAD_SPEED) $(USERAVRDUDEFLAGS) -U flash:w:$(SKETCHHEX):i
+	$(AVRDUDE) -c arduino -p atmega2560 -P $(PORT) -b$(UPLOAD_SPEED) $(USERAVRDUDEFLAGS) -U flash:w:$(SKETCHHEX):i
 
 debug:
 	$(AVARICE) --mkII --capture --jtag usb :4242 & \
